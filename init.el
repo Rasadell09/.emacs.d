@@ -52,10 +52,10 @@
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Auto-complete settings --------------
-;;(add-to-list 'load-path "~/.emacs.d/elpa/popup-el")
-;;(add-to-list 'load-path "~/.emacs.d/elpa/autocomplete")
-;;(require 'auto-complete-config)
-;;(ac-config-default)
+(add-to-list 'load-path "~/.emacs.d/elpa/popup-el")
+(add-to-list 'load-path "~/.emacs.d/elpa/autocomplete")
+(require 'auto-complete-config)
+(ac-config-default)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------

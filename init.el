@@ -48,14 +48,14 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-taming-mr-arneson)
+(color-theme-arjen)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Auto-complete settings --------------
-(add-to-list 'load-path "~/.emacs.d/elpa/popup-el")
-(add-to-list 'load-path "~/.emacs.d/elpa/autocomplete")
-(require 'auto-complete-config)
-(ac-config-default)
+;;(add-to-list 'load-path "~/.emacs.d/elpa/popup-el")
+;;(add-to-list 'load-path "~/.emacs.d/elpa/autocomplete")
+;;(require 'auto-complete-config)
+;;(ac-config-default)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
@@ -77,8 +77,8 @@
  ;; If there is more than one, they won't work right.
  '(ecb-source-path
    (quote
-    (("/Users/rasadell/.emacs.d/" ".emacs.d")
-     ("/Users/rasadell/Downloads/gpgpu-sim_distribution/" "gpgpu-sim")))))
+    (("~/.emacs.d/" ".emacs.d")
+     ("/home/liyunf/gpu-golden/gpgpu-sim_distribution/" "gpgpu-sim")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

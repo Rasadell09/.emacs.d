@@ -111,7 +111,7 @@
 ;; history of the ECB-package see the file NEWS.
 
 ;;; Code:
-
+(defvar display-buffer-alist nil)
 (eval-when-compile
   (require 'silentcomp))
 

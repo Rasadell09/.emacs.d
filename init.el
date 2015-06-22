@@ -57,7 +57,7 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-arjen)
+(color-theme-calm-forest)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Auto-complete settings --------------
@@ -92,7 +92,7 @@
  '(ecb-source-path
    (quote
     (("~/.emacs.d/" ".emacs.d")
-     ("/home/liyunf/gpu-golden/gpgpu-sim_distribution/" "gpgpu-sim")))))
+     ("~/Documents/gpgpu-sim_distribution/" "gpgpu-sim")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

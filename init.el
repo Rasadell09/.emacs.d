@@ -63,12 +63,12 @@
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Color Theme settings -----------------
-;(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
-;(require 'color-theme)
-;(color-theme-initialize)
-;(color-theme-calm-forest)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
-(load-theme 'monokai t)
+(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-calm-forest)
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
+;(load-theme 'monokai t)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
@@ -125,13 +125,6 @@
 (ecb-activate)
 ;; ------------------------- end ----------------------------------
 
-(add-to-list 'load-path "~/.emacs.d/elpa/multiple-cursors/")
-(require 'multiple-cursors)
-(global-set-key (kbd "C-'") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-|") 'mc/mark-all-like-this)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -140,7 +133,7 @@
  '(ecb-source-path
    (quote
     (("~/.emacs.d/" ".emacs.d")
-     ("~/Documents/gpgpu-sim_distribution/" "gpgpu-sim")))))
+     ("/home/liyunf/gpu-golden/gpgpu-sim_distribution/" "gpgpu-sim")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

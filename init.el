@@ -1,4 +1,6 @@
 ;; -------------------------- basic settings --------------------- 
+(unless (boundp 'x-max-tooltip-size)
+  (setq x-max-tooltip-size '(80 . 40))) 
 ;; y/n replace yes/no
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; line number
@@ -76,7 +78,7 @@
   (local-set-key "." 'semantic-complete-self-insert)
   (local-set-key ">" 'semantic-complete-self-insert))
 (add-hook 'c-mode-common-hook 'auto-c-mode-cedet-hook)
-(defconst gpudir "/home/liyunf/gpu-golden/gpgpu-sim_distribution/src/")
+(defconst gpudir "~/Documents/gpgpu-sim_distribution/src/")
 (defconst osdir "/usr/include")
 (defconst cedet-user-include-dirs
   (list gpudir

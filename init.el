@@ -1,4 +1,5 @@
 ;; -------------------------- basic settings --------------------- 
+;; Emacs24 compatible problem
 (unless (boundp 'x-max-tooltip-size)
   (setq x-max-tooltip-size '(80 . 40))) 
 ;; y/n replace yes/no
@@ -55,11 +56,19 @@
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 ;; ------------------------- end ----------------------------------
 
+;; ------------------------- Expand-region settings ---------------
+(add-to-list 'load-path "~/.emacs.d/elpa/expand-region")
+(require 'expand-region)
+(global-set-key (kbd "M-=") 'er/expand-region)
+;; ------------------------- end ----------------------------------
+
 ;; ------------------------- Color Theme settings -----------------
-(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-calm-forest)
+;(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
+;(require 'color-theme)
+;(color-theme-initialize)
+;(color-theme-calm-forest)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
+(load-theme 'monokai t)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
@@ -115,6 +124,14 @@
 (setq ecb-layout-name "leftright2")
 (ecb-activate)
 ;; ------------------------- end ----------------------------------
+
+(add-to-list 'load-path "~/.emacs.d/elpa/multiple-cursors/")
+(require 'multiple-cursors)
+(global-set-key (kbd "C-'") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-|") 'mc/mark-all-like-this)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -57,22 +57,51 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-arjen)
-;; ------------------------- end ----------------------------------
-
-;; ------------------------- Auto-complete settings --------------
-;;(add-to-list 'load-path "~/.emacs.d/elpa/popup-el")
-;;(add-to-list 'load-path "~/.emacs.d/elpa/autocomplete")
-;;(require 'auto-complete-config)
-;;(ac-config-default)
+(color-theme-calm-forest)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
 (load-file "~/.emacs.d/elpa/cedet/common/cedet.el")
 (global-ede-mode 1)
+(global-srecode-minor-mode 1)
 (semantic-load-enable-code-helpers)
 (require 'semantic-ia)
 (require 'semantic-gcc)
+(global-semantic-idle-completions-mode)
+(global-semantic-highlight-edits-mode (if window-system 1 -1))
+(global-semantic-idle-local-symbol-highlight-mode)
+(defun auto-c-mode-cedet-hook()
+  (local-set-key (kbd "M-/") 'semantic-ia-complete-symbol)
+  (local-set-key (kbd "M-n") 'semantic-complete-analyze-inline)
+  (local-set-key "." 'semantic-complete-self-insert)
+  (local-set-key ">" 'semantic-complete-self-insert))
+(add-hook 'c-mode-common-hook 'auto-c-mode-cedet-hook)
+(defconst gpudir "/home/liyunf/gpu-golden/gpgpu-sim_distribution/src/")
+(defconst osdir "/usr/include")
+(defconst cedet-user-include-dirs
+  (list gpudir
+	(concat gpudir "cuda-sim")
+	(concat gpudir "cuda-sim/decuda_pred_table")
+	(concat gpudir "gpgpu-sim")
+	(concat gpudir "gpuwattch")
+	(concat gpudir "gpuwattch/cacti")
+	(concat gpudir "intersim2")
+	(concat gpudir "intersim2/allocators")
+	(concat gpudir "intersim2/arbiters")
+	(concat gpudir "intersim2/networks")
+	(concat gpudir "intersim2/power")
+	(concat gpudir "intersim2/routers")))
+(setq cedet-sys-include-dirs
+      (list osdir
+	    (concat osdir "/bits")
+	    (concat osdir "/c++")
+	    (concat osdir "/sys")))
+(let ((include-dirs cedet-user-include-dirs))
+  (setq include-dirs (append include-dirs cedet-sys-include-dirs))
+  (mapc (lambda (dir)
+	  (semantic-add-system-include dir 'c++-mode)
+	  (semantic-add-system-include dir 'c-mode))
+	include-dirs))
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- ECB settings -------------------------
@@ -99,3 +128,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(put 'upcase-region 'disabled nil)

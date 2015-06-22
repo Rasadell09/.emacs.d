@@ -121,7 +121,7 @@
  '(ecb-source-path
    (quote
     (("~/.emacs.d/" ".emacs.d")
-     ("/home/liyunf/gpu-golden/gpgpu-sim_distribution/" "gpgpu-sim")))))
+     ("~/Documents/gpgpu-sim_distribution/" "gpgpu-sim")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -129,4 +129,3 @@
  ;; If there is more than one, they won't work right.
  )
 
-(put 'upcase-region 'disabled nil)

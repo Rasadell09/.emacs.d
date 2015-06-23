@@ -63,12 +63,13 @@
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Color Theme settings -----------------
-(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-calm-forest)
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
-;(load-theme 'monokai t)
+;; monokai cannot be used in emacs23
+;;(add-to-list 'load-path "~/.emacs.d/elpa/color-theme/")
+;;(require 'color-theme)
+;;(color-theme-initialize)
+;;(color-theme-calm-forest)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
+(load-theme 'monokai t)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
@@ -78,15 +79,21 @@
 (semantic-load-enable-code-helpers)
 (require 'semantic-ia)
 (require 'semantic-gcc)
-(global-semantic-idle-completions-mode)
+(global-semantic-idle-completions-mode 1)
 (global-semantic-highlight-edits-mode (if window-system 1 -1))
-(global-semantic-idle-local-symbol-highlight-mode)
+(global-semantic-idle-local-symbol-highlight-mode 1)
+(global-semantic-show-unmatched-syntax-mode 1)
+(global-semantic-show-parser-state-mode 1)
+(global-semantic-highlight-func-mode 1)
+;; code complete use semantic hot-key
 (defun auto-c-mode-cedet-hook()
-  (local-set-key (kbd "M-/") 'semantic-ia-complete-symbol)
+  (local-set-key (kbd "M-/") 'semantic-ia-complete-symbol-menu)
   (local-set-key (kbd "M-n") 'semantic-complete-analyze-inline)
   (local-set-key "." 'semantic-complete-self-insert)
   (local-set-key ">" 'semantic-complete-self-insert))
-(add-hook 'c-mode-common-hook 'auto-c-mode-cedet-hook)
+(add-hook 'c-mode-hook 'auto-c-mode-cedet-hook)
+(add-hook 'c++-mode-hook 'auto-c-mode-cedet-hook)
+;; include file dirs
 (defconst gpudir "~/Documents/gpgpu-sim_distribution/src/")
 (defconst osdir "/usr/include")
 (defconst cedet-user-include-dirs
@@ -133,7 +140,7 @@
  '(ecb-source-path
    (quote
     (("~/.emacs.d/" ".emacs.d")
-     ("/home/liyunf/gpu-golden/gpgpu-sim_distribution/" "gpgpu-sim")))))
+     ("~/Documents/gpgpu-sim_distribution/" "gpgpu-sim")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

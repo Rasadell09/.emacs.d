@@ -1,4 +1,6 @@
 ;; -------------------------- basic settings --------------------- 
+;; Emacs plugins directory
+(defconst addons "~/.emacs.d/elpa/")
 ;; Emacs24 compatible problem
 (unless (boundp 'x-max-tooltip-size)
   (setq x-max-tooltip-size '(80 . 40))) 
@@ -42,7 +44,8 @@
 (global-set-key [f5] 'delete-window)
 (global-set-key [f6] 'speedbar-get-focus)
 (global-set-key [f7] 'ecb-goto-window-edit1)
-(global-set-key [f9] 'menu-bar-mode)
+(global-set-key [f8] 'semantic-ia-fast-jump)
+(global-set-key [f9] 'semantic-ia-fast-jump-back)
 (global-set-key (kbd "C-c <left>") 'ecb-goto-window-directories)
 (global-set-key (kbd "C-c <down>") 'ecb-goto-window-sources)
 (global-set-key (kbd "C-c <up>") 'ecb-goto-window-methods)
@@ -57,7 +60,7 @@
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- Expand-region settings ---------------
-(add-to-list 'load-path "~/.emacs.d/elpa/expand-region")
+(add-to-list 'load-path (concat addons "expand-region"))
 (require 'expand-region)
 (global-set-key (kbd "M-=") 'er/expand-region)
 ;; ------------------------- end ----------------------------------
@@ -68,12 +71,12 @@
 ;;(require 'color-theme)
 ;;(color-theme-initialize)
 ;;(color-theme-calm-forest)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai")
+(add-to-list 'custom-theme-load-path (concat addons "monokai"))
 (load-theme 'monokai t)
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- CEDET settings -----------------------
-(load-file "~/.emacs.d/elpa/cedet/common/cedet.el")
+(load-file (concat addons "cedet/common/cedet.el"))
 (global-ede-mode 1)
 (global-srecode-minor-mode 1)
 (semantic-load-enable-code-helpers)
@@ -86,11 +89,22 @@
 (global-semantic-show-parser-state-mode 1)
 (global-semantic-highlight-func-mode 1)
 ;; code complete use semantic hot-key
+(defun semantic-ia-fast-jump-back()
+  (interactive)
+  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+      (error "Semantic Bookmark ring is currently empty"))
+  (let* ((ring (oref semantic-mru-bookmark-ring ring))
+	 (alist (semantic-mrub-ring-to-assoc-list ring))
+	 (first (cdr (car alist))))
+    (if (semantic-equivalent-tag-p (oref first tag) (semantic-current-tag))
+	(setq first (cdr (car (cdr alist)))))
+    (semantic-mrub-switch-tags first)))
 (defun auto-c-mode-cedet-hook()
   (local-set-key (kbd "M-/") 'semantic-ia-complete-symbol-menu)
   (local-set-key (kbd "M-n") 'semantic-complete-analyze-inline)
   (local-set-key "." 'semantic-complete-self-insert)
-  (local-set-key ">" 'semantic-complete-self-insert))
+  (local-set-key ">" 'semantic-complete-self-insert)
+  (local-set-key (kbd "C-c -") 'semantic-analyze-current-context))
 (add-hook 'c-mode-hook 'auto-c-mode-cedet-hook)
 (add-hook 'c++-mode-hook 'auto-c-mode-cedet-hook)
 ;; include file dirs
@@ -123,7 +137,7 @@
 ;; ------------------------- end ----------------------------------
 
 ;; ------------------------- ECB settings -------------------------
-(add-to-list 'load-path "~/.emacs.d/elpa/ecb/")
+(add-to-list 'load-path (concat addons "ecb"))
 (require 'ecb)
 (setq ecb-auto-compatibility-check nil)
 (setq ecb-tip-of-the-day nil)

@@ -1,4 +1,6 @@
 ;; -------------------------- basic settings --------------------- 
+;; Set c-mode as major mode of .cc files
+(add-to-list 'auto-mode-alist '("\\.cc\\'" . c-mode))
 ;; Emacs plugins directory
 (defconst addons "~/.emacs.d/elpa/")
 ;; Emacs24 compatible problem

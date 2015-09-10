@@ -1,6 +1,11 @@
 ;; -------------------------- basic settings --------------------- 
-;; Set c-mode as major mode of .cc files
+;; Set c-mode as major mode of .cc & .cpp files
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.cpp\\'" . c-mode))
+;; Set conf-mode as major mode of .icnt files
+(add-to-list 'auto-mode-alist '("\\.icnt\\'" . conf-mode))
+;; Set org-mode as intent mode
+(setq org-intent-mode t)
 ;; Emacs plugins directory
 (defconst addons "~/.emacs.d/elpa/")
 ;; Emacs24 compatible problem
@@ -48,10 +53,10 @@
 (global-set-key [f7] 'ecb-goto-window-edit1)
 (global-set-key [f8] 'semantic-ia-fast-jump)
 (global-set-key [f9] 'semantic-ia-fast-jump-back)
-(global-set-key (kbd "C-c <left>") 'ecb-goto-window-directories)
-(global-set-key (kbd "C-c <down>") 'ecb-goto-window-sources)
-(global-set-key (kbd "C-c <up>") 'ecb-goto-window-methods)
-(global-set-key (kbd "C-c <right>") 'ecb-goto-window-history)
+(global-set-key (kbd "C-x <left>") 'ecb-goto-window-directories)
+(global-set-key (kbd "C-x <down>") 'ecb-goto-window-sources)
+(global-set-key (kbd "C-x <up>") 'ecb-goto-window-methods)
+(global-set-key (kbd "C-x <right>") 'ecb-goto-window-history)
 ;; -------------------------- end ---------------------------------
 
 ;; -------------------------- code block hide/show ----------------
